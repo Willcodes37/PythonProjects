@@ -1,22 +1,11 @@
-import re
+x = input("Input: ")
+Omitted = ["A", "a", "E", "e", "I", "i", "O", "o", "U", "u"]
+Output = ""
 
-
-def main():
-    print(parse(input("HTML: ")))
-
-
-def parse(s):
-
-    x = re.search(r"(https|http)://(www\.)?(youtube\.com)/embed/(\w+)", s)
-
-    if x:
-        if not s.startswith("<iframe") and not s.endswith("></iframe>"):
-            return None
-        else:
-            return f"https://youtu.be/{x.group(4)}"
+for letter in x:
+    if letter not in Omitted:
+        Output += letter
     else:
-        return None
+        letter.replace(letter, "")
 
-
-if __name__ == "__main__":
-    main()
+print(F"Output: {Output}")
