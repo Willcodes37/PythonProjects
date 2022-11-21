@@ -1,20 +1,31 @@
-def main():
-    dollars = dollars_to_float(input("How much was the meal? "))
-    percent = percent_to_float(input("What percentage would you like to tip? "))
-    tip = dollars * percent
-    print(f"Leave ${tip:.2f}")
+while True:
+    try:
+        Menu = {
+                "Baja Taco": 4.00,
+                "Burrito": 7.50,
+                "Bowl": 8.50,
+                "Nachos": 11.00,
+                "Quesadilla": 8.50,
+                "Super Burrito": 8.50,
+                "Super Quesadilla": 9.50,
+                "Taco": 3.00,
+                "Tortilla Salad": 8.00
+                }
+
+        total = 0
+
+        while True:
+            Item = input("Input: ").title()
+
+            if Item in Menu:
+                cost = Menu.get(Item)
+                total += cost
+                print(F"Total: ${total:.2f}")
+            else:
+                pass
+
+    except EOFError:
+        break
 
 
-def dollars_to_float(d):
-    dd = d.replace("$", "")
-    dtf = round(float(dd), 1)
-    return dtf
-
-
-def percent_to_float(p):
-    pp = p.replace("%", "")
-    ptf = float(pp) / 100
-    return ptf
-
-
-main()
+        
