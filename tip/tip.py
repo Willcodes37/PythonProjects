@@ -1,11 +1,20 @@
-x = input("Input: ")
-Omitted = ["A", "a", "E", "e", "I", "i", "O", "o", "U", "u"]
-Output = ""
+def main():
+    dollars = dollars_to_float(input("How much was the meal? "))
+    percent = percent_to_float(input("What percentage would you like to tip? "))
+    tip = dollars * percent
+    print(f"Leave ${tip:.2f}")
 
-for letter in x:
-    if letter not in Omitted:
-        Output += letter
-    else:
-        letter.replace(letter, "")
 
-print(F"Output: {Output}")
+def dollars_to_float(d):
+    dd = d.replace("$", "")
+    dtf = round(float(dd), 1)
+    return dtf
+
+
+def percent_to_float(p):
+    pp = p.replace("%", "")
+    ptf = float(pp) / 100
+    return ptf
+
+
+main()
