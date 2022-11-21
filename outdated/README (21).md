@@ -1,0 +1,23 @@
+
+# Outdated
+
+    #### Description:
+
+    In the file called outdated.py, it prompts the user for a date, anno Domini, in month-day-year order, 
+    formatted like 9/8/1636 or September 8, 1636, wherein the month in the latter might be any of the values in the list below:
+
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+
+    Then output that same date in YYYY-MM-DD format. If the user’s input is not a valid date in either format, prompt the user again. 
+    Assume that every month has no more than 31 days;
