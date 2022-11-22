@@ -1,22 +1,22 @@
-import re
+from pyfiglet import Figlet
+import random as r
+import sys
+
+figlet = Figlet()
+
+rf = r.choice(figlet.getFonts())
 
 
-def main():
-    print(validate(input("IPv4 Address: ")))
+if len(sys.argv) == 1:
+    i = input("Input: ")
+    figlet.setFont(font=rf)
+    print("Output: " + figlet.renderText(i))
+elif len(sys.argv) == 3 and (sys.argv[1] == "-f" or sys.argv[1] == "--font") and (sys.argv[2] in figlet.getFonts()):
+    i = input("Input: ")
+    figlet.setFont(font=sys.argv[2])
+    print("Output: " + figlet.renderText(i))
+else:
+    sys.exit("Invalid usage")
 
 
-def validate(ip):
-    x = re.search(r"^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$", ip)
-
-    if x:
-        a, b, c, d = ip.split(".")
-        if 0 <= int(a) <= 255 and 0 <= int(b) <= 255 and 0 <= int(c) <= 255 and 0 <= int(d) <= 255:
-            return True
-        else:
-            return False
-    else:
-        return False
-
-
-if __name__ == "__main__":
-    main()
+        
