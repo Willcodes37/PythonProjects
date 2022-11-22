@@ -1,21 +1,35 @@
+from twttr import shorten
+
+
 def main():
-    word = input("Input: ")
-    word_shortened = shorten(word)
-    print(F"Output: {word_shortened}")
+    test_lower_case()
+    test_upper_case()
+    test_numbers()
+    test_punctuation()
 
 
-def shorten(x):
-    omitted = ["A", "a", "E", "e", "I", "i", "O", "o", "U", "u"]
-    output = ""
+def test_lower_case():
+    assert shorten('twitter') == "twttr"
+    assert shorten('apple') == "ppl"
 
-    for letter in x:
-        if letter not in omitted:
-            output += letter
-        else:
-            letter.replace(letter, "")
 
-    return output
+def test_numbers():
+    assert shorten("a8893pple") == "8893ppl"
+    assert shorten("1048545") == "1048545"
+
+
+def test_upper_case():
+    assert shorten("APPLE") == "PPL"
+    assert shorten("ELEPHANT") == "LPHNT"
+
+
+def test_punctuation():
+    assert shorten(",./'") == ",./'"
 
 
 if __name__ == "__main__":
     main()
+
+
+
+        
