@@ -1,28 +1,33 @@
-while True:
-    try:
-        Menu = {
-                "Baja Taco": 4.00,
-                "Burrito": 7.50,
-                "Bowl": 8.50,
-                "Nachos": 11.00,
-                "Quesadilla": 8.50,
-                "Super Burrito": 8.50,
-                "Super Quesadilla": 9.50,
-                "Taco": 3.00,
-                "Tortilla Salad": 8.00
-                }
+import sys
+import os
+from PIL import Image
+from PIL import ImageOps
 
-        total = 0
+try:
+    if len(sys.argv) <= 2:
+        sys.exit("Too few command-line arguments")
+    elif len(sys.argv) > 3:
+        sys.exit("Too many command-line arguments")
+    else:
+        i = os.path.splitext(sys.argv[1])
+        o = os.path.splitext(sys.argv[2])
+        if not i[1] == ".png" and not i[1] == ".jpg" and not i[1] == ".jpeg":
+            sys.exit("Invalid input")
+        elif not o[1] == ".png" and not o[1] == ".jpg" and not o[1] == ".jpeg":
+            sys.exit("Invalid output")
+        elif o[1] != i[1]:
+            sys.exit("Input and output have different extensions")
+        elif os.path.isfile(sys.argv[1]) is False:
+            sys.exit("Input does not exist")
+        else:
+            person = Image.open(sys.argv[1])
+            shirt = Image.open("shirt.png")
+            width, height = shirt.size
+            p = ImageOps.fit(person, (width, height))
+            p.paste(shirt, (0, 0), shirt)
+            p.save(
+                sys.argv[2]
+            )
 
-        while True:
-            Item = input("Input: ").title()
-
-            if Item in Menu:
-                cost = Menu.get(Item)
-                total += cost
-                print(F"Total: ${total:.2f}")
-            else:
-                pass
-
-    except EOFError:
-        break
+except FileNotFoundError:
+    sys.exit("File does not exist")
