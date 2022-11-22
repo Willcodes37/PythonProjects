@@ -1,56 +1,112 @@
-from plates import is_valid
+Capital_letters = []
+for i in range(65, 91):
+    Capital_letters.append(chr(i))
+
+Numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 
 def main():
-    test_case_acceptable()
-    test_over_char_limit()
-    test_case_0()
-    test_under_char_limit()
-    test_case_alphanumeric()
-    test_case_numplacement()
-    test_case_beginningletters()
-    test_under_first_2()
+    plate = input("Plate: ").upper()
+    if is_valid(plate):
+        print("Valid")
+    else:
+        print("Invalid")
 
 
-def test_case_acceptable():
-    assert is_valid('AAA222') is True
-    assert is_valid('FHTH33') is True
+def is_valid(s):
+    # Check length of input
+
+    if not 2 <= len(s) <= 6:
+        return False
+    # Check if first two characters of the string are in the Capital_letters
+
+    elif s[0] not in Capital_letters and s[1] not in Capital_letters:
+        return False
+    # Check if the input only has letters and numbers
+
+    else:
+        # Check if the first number used is not 0
+
+        if len(s) == 2:
+            if (s[0] in Capital_letters or s[0] in Numbers) and \
+                    (s[1] in Capital_letters or s[1] in Numbers):
+                if s[0] not in Capital_letters and s[1] not in Capital_letters:
+                    return False
+                else:
+                    return True
+            else:
+                return False
+        elif len(s) == 3:
+            if (s[0] in Capital_letters or s[0] in Numbers) and \
+                    (s[1] in Capital_letters or s[1] in Numbers) and \
+                    (s[2] in Capital_letters or s[2] in Numbers):
+                if s[2] in Numbers and s[2] != "0":
+                    return True
+                elif s[0] in Capital_letters and s[1] in Capital_letters and s[2] in Capital_letters:
+                    return True
+                else:
+                    return False
+            else:
+                return False
+        elif len(s) == 4:
+            if (s[0] in Capital_letters or s[0] in Numbers) and \
+                    (s[1] in Capital_letters or s[1] in Numbers) and \
+                    (s[2] in Capital_letters or s[2] in Numbers) and \
+                    (s[3] in Capital_letters or s[3] in Numbers):
+                if s[1] in Numbers:
+                    return False
+                elif s[2] in Numbers and s[3] in Numbers and s[2] != "0":
+                    return True
+                elif s[3] in Numbers and s[2] != "0" and s[3] != "0":
+                    return True
+                elif s[0] in Capital_letters and s[1] in Capital_letters and s[2] in Capital_letters and \
+                        s[3] in Capital_letters:
+                    return True
+                else:
+                    return False
+            else:
+                return False
+        elif len(s) == 5:
+            if (s[0] in Capital_letters or s[0] in Numbers) and \
+                    (s[1] in Capital_letters or s[1] in Numbers) and \
+                    (s[2] in Capital_letters or s[2] in Numbers) and \
+                    (s[3] in Capital_letters or s[3] in Numbers) and \
+                    (s[4] in Capital_letters or s[4] in Numbers):
+                if s[2] in Numbers:
+                    return False
+                elif s[3] in Numbers and s[4] in Numbers and s[3] != "0":
+                    return True
+                elif s[4] in Numbers and s[3] != "0" and s[4] != "0":
+                    return True
+                elif s[0] in Capital_letters and s[1] in Capital_letters and s[2] in Capital_letters and \
+                        s[3] in Capital_letters and s[4] in Capital_letters:
+                    return True
+                else:
+                    return False
+            else:
+                return False
+        else:
+            if (s[0] in Capital_letters or s[0] in Numbers) and \
+                    (s[1] in Capital_letters or s[1] in Numbers) and \
+                    (s[2] in Capital_letters or s[2] in Numbers) and \
+                    (s[3] in Capital_letters or s[3] in Numbers) and \
+                    (s[4] in Capital_letters or s[4] in Numbers) and \
+                    (s[5] in Capital_letters or s[5] in Numbers):
+                if s[2] in Numbers:
+                    return False
+                elif s[3] in Numbers and s[4] in Numbers and s[5] in Numbers and s[3] != "0":
+                    return True
+                elif s[4] in Numbers and s[5] in Numbers and s[4] != "0":
+                    return True
+                elif s[5] in Numbers and s[5] != "0":
+                    return True
+                elif s[0] in Capital_letters and s[1] in Capital_letters and s[2] in Capital_letters \
+                        and s[3] in Capital_letters and s[4] in Capital_letters and s[5] in Capital_letters:
+                    return True
+                else:
+                    return False
+            else:
+                return False
 
 
-def test_over_char_limit():
-    assert is_valid("ASFTNB55") is False
-    assert is_valid("HJKGFYU78") is False
-
-
-def test_under_char_limit():
-    assert is_valid("A") is False
-    assert is_valid("H") is False
-
-def test_under_first_2():
-    assert is_valid("A2") is False
-    assert is_valid("HA") is True
-    assert is_valid("78") is False
-    assert is_valid("3A") is False
-
-
-def test_case_0():
-    assert is_valid("0ABNR1") is False
-    assert is_valid("0KSFTD") is False
-
-def test_case_alphanumeric():
-    assert is_valid("1A2b#$") is False
-    assert is_valid("A&bN#Z") is False
-    assert is_valid("AIbN#,") is False
-    assert is_valid("IJ*%wY,") is False
-
-def test_case_numplacement():
-    assert is_valid("AYRG02") is False
-    assert is_valid("YI54SD") is False
-
-def test_case_beginningletters():
-    assert is_valid("56DJFD") is False
-    assert is_valid("29DEIG") is False
-
-if __name__ == "__main__":
-    main()
-
+main()
