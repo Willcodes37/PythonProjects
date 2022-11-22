@@ -1,33 +1,21 @@
-from numb3rs import validate
+import re
 
 
 def main():
-    test_case_words()
-    test_case_valid()
-    test_case_symbols()
-    test_case_first_oct()
+    print(validate(input("IPv4 Address: ")))
 
 
+def validate(ip):
+    x = re.search(r"^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$", ip)
 
-
-def test_case_words():
-    assert validate('cat.dog.pig.chicken') is False
-    assert validate('Hello.Bye') is False
-
-
-def test_case_valid():
-    assert validate("125.23.150.255") is True
-    assert validate("230.125.220.83") is True
-
-
-def test_case_symbols():
-    assert validate("@#$.*&$.@#%.*%$") is False
-    assert validate("123.#$$.23.^%2") is False
-
-
-def test_case_first_oct():
-    assert validate("125.345.75.55") is False
-    assert validate("230.700.46.32") is False
+    if x:
+        a, b, c, d = ip.split(".")
+        if 0 <= int(a) <= 255 and 0 <= int(b) <= 255 and 0 <= int(c) <= 255 and 0 <= int(d) <= 255:
+            return True
+        else:
+            return False
+    else:
+        return False
 
 
 if __name__ == "__main__":
